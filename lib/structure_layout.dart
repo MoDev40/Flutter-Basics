@@ -5,9 +5,16 @@ class StructureLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Structure & Layout",
-      home: RowSt(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Structure & Layout"),
+          backgroundColor: Colors.blue,
+          centerTitle: true,
+        ),
+        body:const RowSt(),
+      ),
     );
   }
 }
