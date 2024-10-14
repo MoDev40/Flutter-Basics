@@ -1,11 +1,12 @@
 // import 'package:basic/pages/homepage.dart';
 // import 'package:basic/pages/screen0.dart';
 // import 'package:basic/pages/screen1.dart';
+import 'package:basic/pages/weekThreeWork.dart';
 import 'package:basic/structure_layout.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const StructureLayout());
+  runApp(const Assignment());
 }
 
 // MaterialApp(
