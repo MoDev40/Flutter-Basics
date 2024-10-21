@@ -7,12 +7,83 @@ class MyCalculator extends StatefulWidget {
 }
 
 class _Calculator extends State<MyCalculator> {
-  int _number = 0;
+  String _display = "";
+  String expression = "";
+  bool isSecond = false;
 
-  void _generate(int num) {
+  void _generate(String num) {
     setState(() {
-      _number = num;
+      _display += num;
     });
+  }
+
+  void _clear() {
+    setState(() {
+      _display = "";
+      isSecond = false;
+    });
+  }
+
+  void _back() {
+    int len = _display.length;
+    String newData = _display.substring(0, len - 1);
+    setState(() {
+      if (_display.contains(expression)) {
+        isSecond = false;
+      }
+      _display = newData;
+    });
+  }
+
+  void _expression(String exp) {
+    setState(() {
+      if (!isSecond) {
+        expression = exp;
+        _display += expression;
+        isSecond = true;
+      }
+    });
+  }
+
+  void _calculate() {
+    if (isSecond) {
+      List<String> numbers = _display.split(expression);
+      switch (expression) {
+        case "+":
+          setState(() {
+            _display = (double.parse(numbers[0]) + double.parse(numbers[1]))
+                .toString();
+            isSecond = false;
+          });
+          break;
+        case "-":
+          setState(() {
+            _display = (double.parse(numbers[0]) - double.parse(numbers[1]))
+                .toString();
+            isSecond = false;
+          });
+          break;
+        case "*":
+          setState(() {
+            _display = (double.parse(numbers[0]) * double.parse(numbers[1]))
+                .toString();
+            isSecond = false;
+          });
+          break;
+        case "/":
+          setState(() {
+            _display = (double.parse(numbers[0]) / double.parse(numbers[1]))
+                .toString();
+            isSecond = false;
+          });
+          break;
+        default:
+          setState(() {
+            _display = "Error";
+            isSecond = false;
+          });
+      }
+    }
   }
 
   @override
@@ -33,22 +104,20 @@ class _Calculator extends State<MyCalculator> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.green,
+                    color: Colors.lightBlueAccent,
                   ),
                   height: 80,
                   child: Padding(
-                    padding: const EdgeInsets.only(right:10),
+                    padding: const EdgeInsets.only(right: 10),
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        '$_number',
+                        _display,
                         style: const TextStyle(fontSize: 40),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 40),
-                const Text("General",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -59,7 +128,7 @@ class _Calculator extends State<MyCalculator> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            _generate(1);
+                            _generate("1");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -71,7 +140,7 @@ class _Calculator extends State<MyCalculator> {
                         ),
                         TextButton(
                           onPressed: () {
-                            _generate(2);
+                            _generate("2");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -83,7 +152,7 @@ class _Calculator extends State<MyCalculator> {
                         ),
                         TextButton(
                           onPressed: () {
-                            _generate(3);
+                            _expression("+");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -91,7 +160,7 @@ class _Calculator extends State<MyCalculator> {
                             foregroundColor:
                                 WidgetStateProperty.all(Colors.white),
                           ),
-                          child: const Text("3"),
+                          child: const Text("+"),
                         )
                       ],
                     ),
@@ -101,7 +170,19 @@ class _Calculator extends State<MyCalculator> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            _generate(4);
+                            _generate("3");
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStateProperty.all(Colors.blue),
+                            foregroundColor:
+                                WidgetStateProperty.all(Colors.white),
+                          ),
+                          child: const Text("3"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _generate("4");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -113,7 +194,25 @@ class _Calculator extends State<MyCalculator> {
                         ),
                         TextButton(
                           onPressed: () {
-                            _generate(5);
+                            _expression("-");
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStateProperty.all(Colors.blue),
+                            foregroundColor:
+                                WidgetStateProperty.all(Colors.white),
+                          ),
+                          child: const Text("-"),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            _generate("5");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -125,7 +224,7 @@ class _Calculator extends State<MyCalculator> {
                         ),
                         TextButton(
                           onPressed: () {
-                            _generate(6);
+                            _generate("6");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -134,6 +233,18 @@ class _Calculator extends State<MyCalculator> {
                                 WidgetStateProperty.all(Colors.white),
                           ),
                           child: const Text("6"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _expression("/");
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStateProperty.all(Colors.blue),
+                            foregroundColor:
+                                WidgetStateProperty.all(Colors.white),
+                          ),
+                          child: const Text("/"),
                         )
                       ],
                     ),
@@ -143,7 +254,7 @@ class _Calculator extends State<MyCalculator> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            _generate(7);
+                            _generate("7");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -155,7 +266,7 @@ class _Calculator extends State<MyCalculator> {
                         ),
                         TextButton(
                           onPressed: () {
-                            _generate(8);
+                            _generate("8");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -167,7 +278,7 @@ class _Calculator extends State<MyCalculator> {
                         ),
                         TextButton(
                           onPressed: () {
-                            _generate(9);
+                            _expression("*");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -175,7 +286,7 @@ class _Calculator extends State<MyCalculator> {
                             foregroundColor:
                                 WidgetStateProperty.all(Colors.white),
                           ),
-                          child: const Text("9"),
+                          child: const Text("*"),
                         )
                       ],
                     ),
@@ -185,7 +296,49 @@ class _Calculator extends State<MyCalculator> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            _generate(0);
+                            _generate("9");
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStateProperty.all(Colors.blue),
+                            foregroundColor:
+                                WidgetStateProperty.all(Colors.white),
+                          ),
+                          child: const Text("9"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _generate("0");
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStateProperty.all(Colors.blue),
+                            foregroundColor:
+                                WidgetStateProperty.all(Colors.white),
+                          ),
+                          child: const Text("0"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            _calculate();
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                WidgetStateProperty.all(Colors.blue),
+                            foregroundColor:
+                                WidgetStateProperty.all(Colors.white),
+                          ),
+                          child: const Text("="),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            _generate(".");
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -197,7 +350,7 @@ class _Calculator extends State<MyCalculator> {
                         ),
                         TextButton(
                           onPressed: () {
-                            _generate(0);
+                            _back();
                           },
                           style: ButtonStyle(
                             backgroundColor:
@@ -205,11 +358,11 @@ class _Calculator extends State<MyCalculator> {
                             foregroundColor:
                                 WidgetStateProperty.all(Colors.white),
                           ),
-                          child: const Text("0"),
+                          child: const Icon(Icons.arrow_back),
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            _generate(0);
+                            _clear();
                           },
                           style: ButtonStyle(
                             backgroundColor:
