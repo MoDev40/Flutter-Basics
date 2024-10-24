@@ -4,19 +4,12 @@
 //import 'package:basic/pages/custom_font.dart';
 //import 'package:basic/pages/weekThreeWork.dart';
 //import 'package:basic/structure_layout.dart';
+import 'package:basic/buttons.dart';
+import 'package:basic/pages/screen0.dart';
 import 'package:flutter/material.dart';
 import 'package:basic/pages/calculator.dart';
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       title: "My App",
-//       home: CustomFont(),
-//     );
-//   }
-// }
+
 // MaterialApp(
 // initialRoute: "/",
 // routes: {
@@ -28,5 +21,5 @@ import 'package:basic/pages/calculator.dart';
 
 
 void main() {
-  runApp(const MyCalculator());
+  runApp(const Buttons());
 }

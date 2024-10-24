@@ -18,7 +18,7 @@ class _ButtonsState extends State<Buttons> {
       title: "Flutter Basic",
       home: Scaffold(
         appBar: AppBar(title: const Text("Flutter Buttons"), centerTitle: true),
-        body: Row(
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             DropdownButton<String>(
@@ -46,7 +46,25 @@ class _ButtonsState extends State<Buttons> {
               icon: const Icon(Icons.favorite),
             ),
             OutlinedButton(
-                onPressed: () {}, child: const Text("Outline Button"))
+              onPressed: () {},
+              child: const Text("Outline Button"),
+            ),
+            ElevatedButton.icon(
+              onPressed: () {
+              },
+              icon: const Icon(Icons.abc_outlined),
+              label: const Text('Your Text Here'),
+            ),
+            PopupMenuButton(itemBuilder: (BuildContext context) {
+              return cities.map((city) {
+                return PopupMenuItem(
+                  value: city,
+                  child: Text(city),
+                );
+              }).toList();
+            },onSelected: (String value){
+              print(value);
+            },)
           ],
         ),
         floatingActionButton: FloatingActionButton(
