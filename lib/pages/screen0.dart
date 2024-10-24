@@ -1,7 +1,8 @@
 import "package:flutter/material.dart";
 
 class Screen0 extends StatelessWidget {
-  const Screen0({super.key});
+  String pram = "";
+  Screen0({super.key, required this.pram});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -9,7 +10,7 @@ class Screen0 extends StatelessWidget {
       home: SafeArea(
         child: Scaffold(
           appBar: AppBar(
-            title: const Text("Screen0"),
+            title: Text(pram),
             centerTitle: true,
           ),
           body: Center(
