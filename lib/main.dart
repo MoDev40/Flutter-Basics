@@ -8,6 +8,7 @@
 // import 'package:basic/pages/homepage.dart';
 // import 'package:basic/pages/screen0.dart';
 // import 'package:basic/pages/screen1.dart';
+import 'package:basic/pages/activity_class.dart';
 import 'package:basic/pages/challenge.dart';
 import 'package:flutter/material.dart';
 // import 'package:basic/pages/calculator.dart';
@@ -24,11 +25,14 @@ import 'package:flutter/material.dart';
 // ));
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     home: SafeArea(child: Scaffold(
       backgroundColor: Colors.white,
-      body: Challenge(),
+      appBar: AppBar(
+        title: const Text("Image Viewer Application"),
+      ),
+      body: const ActivityClass(),
     )),
   ));
 }
