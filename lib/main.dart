@@ -8,6 +8,7 @@
 // import 'package:basic/pages/homepage.dart';
 // import 'package:basic/pages/screen0.dart';
 // import 'package:basic/pages/screen1.dart';
+import 'package:basic/pages/activity2.dart';
 import 'package:basic/pages/activity_class.dart';
 import 'package:basic/pages/challenge.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +31,9 @@ void main() {
     home: SafeArea(child: Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Image Viewer Application"),
+        title: const Text("E-Learning Application"),
       ),
-      body: const ActivityClass(),
+      body: const ActivityTwo(),
     )),
   ));
 }
