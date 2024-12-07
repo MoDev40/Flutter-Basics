@@ -16,7 +16,9 @@ class _PageState extends State<PageWidget> {
     return Scaffold(
       appBar: AppBar(title: const Text("Page Information"),),
       body: screens[currentPage],
-      bottomNavigationBar: BottomNavigationBar(items: const [
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.yellow,
+        items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",tooltip: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.music_note),label: "Music",tooltip: "Music"),
       ],onTap: (value){
@@ -33,6 +35,22 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Home"),);
+    return ListView(
+      children:  [
+        const Center(child: Text("Screen 1",style: TextStyle(fontSize: 34),),),
+        const Center(child: SelectableText("Screen 2",style: TextStyle(fontSize: 34)),),
+        DataTable(columns: const [
+              DataColumn(label: Text("ID"),),
+              DataColumn(label: Text("Name"),),
+              DataColumn(label: Text("Age"))
+        ], rows: const [
+              DataRow(cells: [
+                DataCell(Text("C1211232"),),
+                DataCell(Text("Mukhtar"),),
+                DataCell(Text("21"),),
+              ])
+        ],)
+      ],
+    );
   }
 }
