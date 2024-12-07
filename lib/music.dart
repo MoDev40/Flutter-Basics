@@ -16,9 +16,7 @@ class Musics extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return ListView(
           children: musics.map(
         (music) {
           var parts = music.split("-");
@@ -29,7 +27,6 @@ class Musics extends StatelessWidget {
             trailing: const Icon(Icons.play_arrow_rounded),
           );
         },
-      ).toList()),
-    );
+      ).toList(),);
   }
 }
